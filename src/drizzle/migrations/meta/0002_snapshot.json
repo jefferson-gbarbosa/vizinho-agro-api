@@ -1,11 +1,11 @@
 {
-  "id": "0bb76918-4425-4172-98a7-00810432bc83",
-  "prevId": "16d0066f-8bf6-43d5-8e12-8bf882d9f8f4",
+  "id": "1815fa0e-4129-40b7-b7ca-25b34efec227",
+  "prevId": "4fda5fbb-9301-4d65-a7b8-bedea4eefbc2",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.consumer": {
-      "name": "consumer",
+    "public.metrics": {
+      "name": "metrics",
       "schema": "",
       "columns": {
         "id": {
@@ -14,43 +14,68 @@
           "primaryKey": true,
           "notNull": true
         },
-        "nome": {
-          "name": "nome",
-          "type": "varchar(100)",
+        "producer_id": {
+          "name": "producer_id",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "telefone": {
-          "name": "telefone",
-          "type": "varchar(20)",
+        "produtos_cadastrados": {
+          "name": "produtos_cadastrados",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "senha": {
-          "name": "senha",
-          "type": "varchar(255)",
+        "vendas_semanais": {
+          "name": "vendas_semanais",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
+        },
+        "clientes_ativos": {
+          "name": "clientes_ativos",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "avaliacao_media": {
+          "name": "avaliacao_media",
+          "type": "numeric(3, 1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "consumer_telefone_unique": {
-          "name": "consumer_telefone_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "telefone"
-          ]
+      "foreignKeys": {
+        "metrics_producer_id_producers_id_fk": {
+          "name": "metrics_producer_id_producers_id_fk",
+          "tableFrom": "metrics",
+          "tableTo": "producers",
+          "columnsFrom": [
+            "producer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.producer": {
-      "name": "producer",
+    "public.producers": {
+      "name": "producers",
       "schema": "",
       "columns": {
         "id": {
@@ -107,6 +132,25 @@
           "type": "double precision",
           "primaryKey": false,
           "notNull": false
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {},
@@ -117,8 +161,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.product": {
-      "name": "product",
+    "public.products": {
+      "name": "products",
       "schema": "",
       "columns": {
         "id": {
@@ -171,6 +215,13 @@
           "primaryKey": false,
           "notNull": false
         },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
         "producer_id": {
           "name": "producer_id",
           "type": "integer",
@@ -180,10 +231,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "product_producer_id_producer_id_fk": {
-          "name": "product_producer_id_producer_id_fk",
-          "tableFrom": "product",
-          "tableTo": "producer",
+        "products_producer_id_producers_id_fk": {
+          "name": "products_producer_id_producers_id_fk",
+          "tableFrom": "products",
+          "tableTo": "producers",
           "columnsFrom": [
             "producer_id"
           ],

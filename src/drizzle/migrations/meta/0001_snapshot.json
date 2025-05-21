@@ -1,56 +1,11 @@
 {
-  "id": "16d0066f-8bf6-43d5-8e12-8bf882d9f8f4",
-  "prevId": "9d5194b5-672d-4ed8-aad9-c3133c98e898",
+  "id": "4fda5fbb-9301-4d65-a7b8-bedea4eefbc2",
+  "prevId": "c32a5ced-d405-47e5-9b95-5eac92cf9907",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.consumer": {
-      "name": "consumer",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "nome": {
-          "name": "nome",
-          "type": "varchar(100)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "telefone": {
-          "name": "telefone",
-          "type": "varchar(20)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "senha": {
-          "name": "senha",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "consumer_telefone_unique": {
-          "name": "consumer_telefone_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "telefone"
-          ]
-        }
-      },
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.producer": {
-      "name": "producer",
+    "public.producers": {
+      "name": "producers",
       "schema": "",
       "columns": {
         "id": {
@@ -107,10 +62,119 @@
           "type": "double precision",
           "primaryKey": false,
           "notNull": false
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.products": {
+      "name": "products",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preco": {
+          "name": "preco",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quantidade": {
+          "name": "quantidade",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "imagem": {
+          "name": "imagem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "disponibilidade_tipo": {
+          "name": "disponibilidade_tipo",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'always'"
+        },
+        "disponivel_ate": {
+          "name": "disponivel_ate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "producer_id": {
+          "name": "producer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "products_producer_id_producers_id_fk": {
+          "name": "products_producer_id_producers_id_fk",
+          "tableFrom": "products",
+          "tableTo": "producers",
+          "columnsFrom": [
+            "producer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},

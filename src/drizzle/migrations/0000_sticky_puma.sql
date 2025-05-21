@@ -1,4 +1,4 @@
-CREATE TABLE "producer" (
+CREATE TABLE "producers" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"nome" varchar(255),
 	"telefone" varchar(20),
@@ -7,5 +7,8 @@ CREATE TABLE "producer" (
 	"certificacoes" json DEFAULT '[]'::json,
 	"foto_perfil" text,
 	"latitude" double precision,
-	"longitude" double precision
+	"longitude" double precision,
+	"code" text NOT NULL,
+	"expiresAt" timestamp NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL
 );

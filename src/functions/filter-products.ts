@@ -1,8 +1,9 @@
 // src/functions/filter-products.ts
 import { db } from "../drizzle/client";
 import { eq } from "drizzle-orm";
-import { producers } from "../drizzle/schema/producerSchema";
 import { products } from "../drizzle/schema/productSchema";
+import { producers } from "../drizzle/schema/producerSchema";
+
 
 function haversine(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371; // raio da Terra em km

@@ -35,7 +35,6 @@ export const searchProductsRoute: FastifyPluginAsyncZod = async app => {
       try {
         const { search } = request.query
         const products = await searchProducts(search ?? '')
-        console.log(products)
         return reply.send(products)
       } catch (err) {
         console.error(err)

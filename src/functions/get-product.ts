@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
-import { products } from './../drizzle/schema/productSchema';
 import { db } from "../drizzle/client"
+import { products } from '../drizzle/schema/productSchema';
 
 export async function getProduct(id: number) {
   const result = await db.select().from(products).where(eq(products.id, id)).limit(1);

@@ -47,7 +47,6 @@ export const createProducerRoute: FastifyPluginAsyncZod = async app => {
         latitude,
         longitude,
       })
-
       return reply.status(201).send({ producerId })
     }
   )

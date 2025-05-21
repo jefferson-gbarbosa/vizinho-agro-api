@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { db } from '../drizzle/client';
-import { producers } from '../drizzle/schema/producerSchema';
 import bcrypt from 'bcryptjs'; 
+import { producers } from '../drizzle/schema/producerSchema';
 
 interface loginProducerParams {
   telefone: string;

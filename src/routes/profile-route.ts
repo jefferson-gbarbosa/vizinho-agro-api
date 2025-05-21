@@ -1,4 +1,3 @@
-// routes/profile.ts
 import { FastifyPluginAsync } from 'fastify';
 import { authPlugin } from '../plugins/auth';
 
@@ -9,11 +8,9 @@ export const profileRoute: FastifyPluginAsync = async app => {
     if (!request.user) {
       return reply.status(401).send({ error: 'Não autenticado' });
     }
-    console.log(request.user)
-    return {
-      id: request.user.id,
-      nome: request.user.nome,
-      tipo: request.user.type,
-    };
+
+    const { id, nome, type } = request.user;
+
+    return { id, nome, tipo: type };
   });
 };

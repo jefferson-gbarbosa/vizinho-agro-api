@@ -1,7 +1,7 @@
 import { db } from "../drizzle/client"
 import { eq } from 'drizzle-orm';
-import { producers } from '../drizzle/schema/producerSchema';
-import { products } from '../drizzle/schema/productSchema';
+import { producers } from "../drizzle/schema/producerSchema";
+import { products } from "../drizzle/schema/productSchema";
 
 export async function getAllProducersWithLocation() {
   const rows = await db

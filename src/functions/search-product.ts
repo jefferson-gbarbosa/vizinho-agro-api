@@ -1,6 +1,7 @@
-import { products } from './../drizzle/schema/productSchema';
 import { db } from "../drizzle/client"
 import { ilike } from 'drizzle-orm'
+import { products } from "../drizzle/schema/productSchema";
+
 
 export async function searchProducts(search: string) {
 //   if (!search) return []

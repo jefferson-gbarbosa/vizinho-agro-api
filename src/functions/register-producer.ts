@@ -1,7 +1,8 @@
 import { eq } from 'drizzle-orm';
 import { db } from '../drizzle/client';
-import { producers } from '../drizzle/schema/producerSchema'; 
 import bcrypt from 'bcryptjs';
+import { producers } from '../drizzle/schema/producerSchema';
+import { addMinutes } from 'date-fns';
 
 interface CreateProducerParams {
   nome: string;
@@ -33,7 +34,10 @@ export async function createProducer({
     return { producerId: existing[0].id };
   }
 
-   const hashedPassword = await bcrypt.hash(senha, 10);
+  const hashedPassword = await bcrypt.hash(senha, 10);
+
+  const code = Math.floor(100000 + Math.random() * 900000).toString(); // exemplo: '123456'
+  const expiresAt = addMinutes(new Date(), 10); // expira em 10 minutos
 
   const [{ producerId }] = await db
     .insert(producers)
@@ -42,10 +46,12 @@ export async function createProducer({
       telefone,
       senha: hashedPassword,
       tipoProducao,
-      certificacoes:certificacoes ?? [],
-      fotoPerfil: fotoPerfil ?? null,
+      certificacoes: certificacoes ?? [],
+      fotoPerfil: fotoPerfil ?? '',
       latitude,
       longitude,
+      code,
+      expiresAt,
     })
     .returning({
       producerId: producers.id,
@@ -53,4 +59,3 @@ export async function createProducer({
 
   return { producerId };
 }
-

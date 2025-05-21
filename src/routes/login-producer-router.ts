@@ -32,20 +32,21 @@ export const loginProducerRoute: FastifyPluginAsyncZod = async app => {
         const token = generateToken({
           sub: result.producerId,
           nome: result.nome,
-          type: 'consumer',
+          type: 'producer',
         });
+     
          return reply.send({
           token,
           producerId: result.producerId,
           nome: result.nome,
         });
+        
       } catch (err) {
         const errorMessage = (err as Error).message;
 
         if (errorMessage === 'Credenciais inválidas') {
           return reply.status(401).send({ error: errorMessage });
         }
-
         request.log.error(err);
         return reply.status(500).send({ error: 'Erro interno do servidor' });
       }

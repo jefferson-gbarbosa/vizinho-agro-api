@@ -1,6 +1,7 @@
-import { products } from '../drizzle/schema/productSchema';
 import { eq, and } from 'drizzle-orm';
 import { db } from '../drizzle/client';
+import { products } from '../drizzle/schema/productSchema';
+
 
 interface CreateProductParams {
   nome: string;

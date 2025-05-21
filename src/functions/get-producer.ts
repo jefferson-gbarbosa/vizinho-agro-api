@@ -1,6 +1,7 @@
 import { db } from "../drizzle/client"
 import { producers } from "../drizzle/schema/producerSchema"
 
+
 export async function getProducers() {
   const allProducers = await db.select().from(producers)
   
