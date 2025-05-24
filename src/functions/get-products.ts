@@ -1,22 +1,17 @@
-import { eq } from 'drizzle-orm';
 import { db } from "../drizzle/client"
 import { products } from '../drizzle/schema/productSchema';
 
-export async function getProduct(id: number) {
-  const result = await db.select().from(products).where(eq(products.id, id)).limit(1);
+export async function getProducts() {
+  const allProducts = await db.select().from(products)
 
-  if (result.length === 0) return null;
-
-  const product = result[0];
-  return {
+  return allProducts.map(product => ({
     id: product.id,
     nome: product.nome,
-    tipo: product.tipo,
+    tipo: product.tipo ?? '',
     preco: product.preco,
     quantidade: product.quantidade ?? 0,
-    imagem: product.imagem,
+    imagem: product.imagem ?? '',
     disponibilidadeTipo: product.disponibilidadeTipo ?? 'always',
     disponivelAte: product.disponivelAte?.toString() ?? null,
-    producerId: product.producerId,
-  };
+  }));
 }
