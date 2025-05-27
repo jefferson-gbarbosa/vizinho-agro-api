@@ -52,7 +52,6 @@ app.register(getLocationProducersRoute)
 app.register(getMetricsProducersRoute)
 app.register(filterByNameRoute)
 
-
 app.listen({ port: env.PORT, host: '0.0.0.0' }, (err, address) => {
    if(err){
         console.error(err)

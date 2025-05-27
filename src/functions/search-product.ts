@@ -4,8 +4,6 @@ import { products } from "../drizzle/schema/productSchema";
 
 
 export async function searchProducts(search: string) {
-//   if (!search) return []
- console.log('searchProducts search:', search);
  if (!search) {
     // Retornar algum resultado padrão, ex: todos os produtos limitados
     return await db.select().from(products).limit(20);
