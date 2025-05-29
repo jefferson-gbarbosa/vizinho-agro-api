@@ -5,13 +5,13 @@
 
   "compilerOptions": {
     "lib": ["es2023"],
-    "module": "esnext", // ou "commonjs" se você preferir padrão Node.js
+    "module": "esnext", 
     "target": "es2022",
 
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node", // <- esta é a mudança importante
+    "moduleResolution": "node", 
     "resolveJsonModule": true
   }
 }

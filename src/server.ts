@@ -39,6 +39,10 @@ app.register(fastifySwaggerUi, {
  routePrefix: '/docs',
 })
 
+app.get('/status', async () => {
+  return { status: 'ok' }
+})
+
 app.register(profileRoute);
 app.register(createProducerRoute)
 app.register(createNewProductRoute)
@@ -55,7 +59,7 @@ app.register(filterByNameRoute)
 app.listen({ port: env.PORT, host: '0.0.0.0' }, (err, address) => {
    if(err){
         console.error(err)
-        process.exit()
+        process.exit(1)
    }
    console.log(`HTTP server running on ${address}`)
 })
