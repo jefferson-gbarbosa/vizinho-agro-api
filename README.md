@@ -47,4 +47,4 @@ The "Vizinho Agro" API serves as the backend of a platform that connects local p
 
 ## API Documentation (Swagger)
 
-- For API documentation, please visit the link
+- For API documentation, please visit the link [https://vizinho-agro-api.onrender.com](https://vizinho-agro-api.onrender.com/docs)
