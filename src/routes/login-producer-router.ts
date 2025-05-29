@@ -8,8 +8,8 @@ export const loginProducerRoute: FastifyPluginAsyncZod = async app => {
     '/login-producer',
     {
       schema: {
-        summary: 'Login de Produtor',
-        tags: ['producers'],
+        summary: 'Login do Produtor',
+        tags: ['produtores'],
         body: z.object({
           telefone: z.string(),
           senha: z.string().min(6),

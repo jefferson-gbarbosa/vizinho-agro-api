@@ -4,8 +4,8 @@ import { getAllProducersWithLocation } from '../functions/get-products-location'
 export const getLocationProducersRoute: FastifyPluginAsync = async (app) => {
   app.get('/location-producers', {
     schema: {
-      summary: 'List all producers with valid location and their products',
-      tags: ['producers'],
+      summary: 'Listar todos os produtores com localização válida e seus produtos',
+      tags: ['produtores'],
     },
   }, async (_req, reply) => {
     const result = await getAllProducersWithLocation();

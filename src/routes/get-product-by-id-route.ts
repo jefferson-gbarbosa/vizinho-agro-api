@@ -7,8 +7,8 @@ export const getProductsByIdRoute: FastifyPluginAsyncZod = async app => {
     '/products/:id',
     {
       schema: {
-        summary: 'Get product by id',
-        tags: ['products'],
+        summary: 'Obter produto por id',
+        tags: ['produtos'],
         operationId: 'getProductId',
         params: z.object({
           id: z.coerce.number(),

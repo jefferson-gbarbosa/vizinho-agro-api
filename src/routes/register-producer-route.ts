@@ -7,8 +7,8 @@ export const createProducerRoute: FastifyPluginAsyncZod = async app => {
     '/producer',
     {
       schema: {
-        summary: 'Create producer',
-        tags: ['producers'],
+        summary: 'Criar produtor',
+        tags: ['produtores'],
         operationId: 'createProducer',
         body: z.object({
           nome: z.string(),

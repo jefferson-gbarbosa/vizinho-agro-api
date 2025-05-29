@@ -11,8 +11,8 @@ export const getProductsRoute: FastifyPluginAsyncZod = async app => {
     '/product',
     {
       schema: {
-        summary: 'Get all products',
-        tags: ['products'],
+        summary: 'Obtenha todos os produtos',
+        tags: ['produtos'],
         operationId: 'getAllProducts',
         response: {
           200: z.array(

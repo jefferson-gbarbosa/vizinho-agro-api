@@ -7,8 +7,8 @@ export const searchProductsRoute: FastifyPluginAsyncZod = async app => {
     '/products',
     {
       schema: {
-        summary: 'Search products',
-        tags: ['products'],
+        summary: 'Pesquisar produtos',
+        tags: ['produtos'],
         operationId: 'searchProducts',
         querystring: z.object({
           search: z.string().min(1).optional(),

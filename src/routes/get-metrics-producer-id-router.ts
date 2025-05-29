@@ -24,8 +24,8 @@ const metricSchema = z.object({
 export const getMetricsProducersRoute: FastifyPluginAsync = async (app) => {
   app.get('/producers/:producerId/metrics', {
     schema: {
-      summary: 'Get metrics for a specific producer',
-      tags: ['producers'],
+      summary: 'Obtenha métricas para um produtor específico',
+      tags: ['produtores'],
       params: paramsSchema,
       response: {
         200: z.union([
